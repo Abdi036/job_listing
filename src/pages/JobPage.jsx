@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export default function JobPage({ deleteJob }) {
   const [job, setJob] = useState(null);
@@ -37,6 +38,7 @@ export default function JobPage({ deleteJob }) {
     const confirm = window.confirm("Are you sure you want to delete this job?");
     if (!confirm) return;
     await deleteJob(jobId);
+    toast.success("Job deleted successfully.");
     navigate("/");
   }
 

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function AddjobsPage({ onAddJob }) {
   const [type, setType] = useState("Full-Time");
@@ -31,6 +32,7 @@ export default function AddjobsPage({ onAddJob }) {
       },
     };
     onAddJob(newJob);
+    toast.success("Job added successfully.")
     return navigate("/");
   }
 
