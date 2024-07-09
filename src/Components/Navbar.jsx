@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,24 +34,24 @@ const Navbar = () => {
           } md:flex md:items-center md:w-auto w-full`}
         >
           <div className="text-sm md:flex-grow">
-            <a
-              href="#home"
+            <Link
+              to="/"
               className="block mt-4 md:inline-block md:mt-0 text-white hover:text-gray-200 mr-4"
             >
               Home
-            </a>
-            <a
-              href="#jobs"
+            </Link>
+            <Link
+              to="/jobs"
               className="block mt-4 md:inline-block md:mt-0 text-white hover:text-gray-200 mr-4"
             >
               Jobs
-            </a>
-            <a
-              href="#add-jobs"
+            </Link>
+            <Link
+              to="/add-jobs"
               className="block mt-4 md:inline-block md:mt-0 text-white hover:text-gray-200"
             >
               Add Jobs
-            </a>
+            </Link>
           </div>
         </div>
       </div>
