@@ -12,7 +12,9 @@ const Navbar = () => {
   return (
     <nav className="bg-indigo-600 p-4 border-b border-gray-500 shadow">
       <div className="container mx-auto flex justify-between items-center ">
-        <div className="text-white text-2xl font-bold">Logo</div>
+        <NavLink to="/" className="text-white text-2xl font-bold">
+          Logo
+        </NavLink>
         <div className="md:hidden absolute right-5 top-5">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -46,8 +48,8 @@ const Navbar = () => {
             <NavLink to="/jobs" className={LinkClass}>
               Jobs
             </NavLink>
-            <NavLink to="nalanla" className={LinkClass}>
-              Add Jobs
+            <NavLink to="/add-jobs" className={LinkClass}>
+              Add Job
             </NavLink>
           </div>
         </div>

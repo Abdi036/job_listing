@@ -1,12 +1,14 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 
-export default function JobPage() {
+export default function JobPage({ deleteJob }) {
   const [job, setJob] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchJob() {
@@ -29,6 +31,13 @@ export default function JobPage() {
 
   if (isLoading) {
     return <div className="text-center">Loading...</div>;
+  }
+
+  async function handleDelete(jobId) {
+    const confirm = window.confirm("Are you sure you want to delete this job?");
+    if (!confirm) return;
+    await deleteJob(jobId);
+    navigate("/");
   }
 
   return (
@@ -93,7 +102,10 @@ export default function JobPage() {
                 >
                   Edit Job
                 </Link>
-                <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
+                <button
+                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+                  onClick={() => handleDelete(job.id)}
+                >
                   Delete Job
                 </button>
               </div>
