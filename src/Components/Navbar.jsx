@@ -1,7 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  function LinkClass({ isActive }) {
+    return isActive
+      ? "bg-black text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+      : "text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2";
+  }
 
   return (
     <nav className="bg-indigo-600 p-4 border-b border-gray-500 shadow">
@@ -33,25 +39,16 @@ const Navbar = () => {
             isOpen ? "flex-col " : "hidden"
           } md:flex md:items-center md:w-auto w-full`}
         >
-          <div className="text-sm md:flex-grow">
-            <Link
-              to="/"
-              className="block mt-4 md:inline-block md:mt-0 text-white hover:text-gray-200 mr-4"
-            >
+          <div className="text-sm md:flex-grow  ">
+            <NavLink to="/" className={LinkClass}>
               Home
-            </Link>
-            <Link
-              to="/jobs"
-              className="block mt-4 md:inline-block md:mt-0 text-white hover:text-gray-200 mr-4"
-            >
+            </NavLink>
+            <NavLink to="/jobs" className={LinkClass}>
               Jobs
-            </Link>
-            <Link
-              to="/add-jobs"
-              className="block mt-4 md:inline-block md:mt-0 text-white hover:text-gray-200"
-            >
+            </NavLink>
+            <NavLink to="nalanla" className={LinkClass}>
               Add Jobs
-            </Link>
+            </NavLink>
           </div>
         </div>
       </div>

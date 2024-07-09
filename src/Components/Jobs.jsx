@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { FaMapMarker } from "react-icons/fa";
 import jobs from "/public/jobs.json";
+import { Link } from "react-router-dom";
 
-export default function Jobs() {
+export default function Jobs({ isHome }) {
   const [showDesc, setShowDesc] = useState({});
 
   function toggleDescription(id) {
@@ -12,11 +14,12 @@ export default function Jobs() {
     }));
   }
 
-  const recentJobs = jobs.slice(0, 3);
+  const joblist = isHome ? jobs.slice(0, 3) : jobs;
+
   return (
     <div className="container mx-auto p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {recentJobs.map((job) => (
+        {joblist.map((job) => (
           <div className="bg-white rounded-xl shadow-md" key={job.id}>
             <div className="p-4">
               <div className="mb-6">
@@ -41,12 +44,12 @@ export default function Jobs() {
                   <FaMapMarker className="inline text-lg" />
                   {job.location}
                 </div>
-                <a
-                  href={`/job/${job.id}`}
+                <Link
+                  to={`/job/${job.id}`}
                   className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
                 >
                   Read More
-                </a>
+                </Link>
               </div>
             </div>
           </div>
