@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function EditJobPage({ onEditJob }) {
@@ -68,6 +69,10 @@ export default function EditJobPage({ onEditJob }) {
   return (
     <section className="bg-indigo-50">
       <div className="container mx-auto max-w-2xl py-24 px-4">
+        <NavLink to={`/job/${id}`} className="mb-5 text-indigo-400">
+          <FaArrowLeft className="inline" />
+          Back
+        </NavLink>
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border">
           <form onSubmit={handleSubmit}>
             <h2 className="text-3xl text-center font-semibold mb-6">

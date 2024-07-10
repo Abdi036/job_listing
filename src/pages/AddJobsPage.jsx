@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FaArrowLeft } from "react-icons/fa6";
 
 export default function AddjobsPage({ onAddJob }) {
   const [type, setType] = useState("Full-Time");
@@ -32,13 +33,17 @@ export default function AddjobsPage({ onAddJob }) {
       },
     };
     onAddJob(newJob);
-    toast.success("Job added successfully.")
+    toast.success("Job added successfully.");
     return navigate("/");
   }
 
   return (
     <section className="bg-indigo-50">
       <div className="container mx-auto max-w-2xl py-24 px-4">
+        <NavLink to={"/"} className="mb-5 text-indigo-400">
+          <FaArrowLeft className="inline" />
+          Back
+        </NavLink>
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border">
           <form onSubmit={handleSubmit}>
             <h2 className="text-3xl text-center font-semibold mb-6">Add Job</h2>

@@ -16,6 +16,7 @@ export default function Jobs({ isHome }) {
           : "http://localhost:9000/jobs";
         const res = await fetch(URL);
         const data = await res.json();
+        data.sort((a, b) => b - a);
         setJobs(data);
       } catch (error) {
         console.log("error while fetching data", error);
