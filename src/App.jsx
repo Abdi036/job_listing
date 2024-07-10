@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import JobsPage from "./pages/JobsPage";
 import JobPage from "./pages/JobPage";
 import AddJobsPage from "./pages/AddJobsPage";
+import EditJobPage from "./pages/EditJobPage";
 import NotFound from "./pages/NotFound";
 
 // Add job
@@ -35,6 +36,18 @@ async function deleteJob(id) {
   return res.json();
 }
 
+// Update Job
+async function updateJob(job) {
+  const res = await fetch(`http://localhost:9000/jobs/${job.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(job),
+  });
+  return res.json();
+}
+
 export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -43,6 +56,10 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/job/:id" element={<JobPage deleteJob={deleteJob} />} />
+        <Route
+          path="/edit-job/:id"
+          element={<EditJobPage onEditJob={updateJob} />}
+        />
         <Route path="/add-jobs" element={<AddJobsPage onAddJob={addJob} />} />
       </Route>
     )
@@ -50,5 +67,3 @@ export default function App() {
 
   return <RouterProvider router={router} />;
 }
-
-// start from Edit
